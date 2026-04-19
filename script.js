@@ -1,68 +1,77 @@
-//callback function  
-function fetchData(cb){
-    setTimeout(()=>{
-        console.log("Data fetched");
-        cb();
 
-    },2000);
+  function setTab(el) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('bg-brand-light', 'text-brand');
+      b.classList.add('text-gray-500');
+    });
+    el.classList.add('bg-brand-light', 'text-brand');
+    el.classList.remove('text-gray-500');
+  }
+  function setTrip(el) {
+    document.querySelectorAll('.trip-btn').forEach(b => {
+      b.classList.remove('bg-brand', 'text-white');
+      b.classList.add('bg-gray-100', 'text-gray-500');
+    });
+    el.classList.add('bg-brand', 'text-white');
+    el.classList.remove('bg-gray-100', 'text-gray-500');
+  }
 
-}
-function processData(){
-    console.log("Data processed");
-}
-// fetching data and then processing it using callback function
-fetchData(processData);
+  function setActiveTab(clickedTab) {
+    // 1. Get all tabs
+    const tabs = document.querySelectorAll('.tab-item');
 
-//promise is a object that represents the eventual completion (or failure) of an asynchronous operation and its resulting value.
+    // 2. Reset all tabs to "inactive" state
+    tabs.forEach(tab => {
+      // Remove active classes
+      tab.classList.remove('border-blue-900', 'text-blue-900', 'font-semibold');
+      tab.classList.add('border-transparent', 'text-gray-400', 'font-medium');
+    });
 
-const myPromise= new Promise((res,rej)=>{
-    let success=true;
-    if(success){
-        res("Promise resolved successfully");
+    // 3. Set the clicked tab to "active" state
+    clickedTab.classList.remove('border-transparent', 'text-gray-400', 'font-medium');
+    clickedTab.classList.add('border-blue-900', 'text-blue-900', 'font-semibold');
+  }
+
+
+  function toggleMenu() {
+    const container = document.getElementById('side-menu-container');
+    const panel = document.getElementById('sidebar-panel');
+    
+    if (container.classList.contains('invisible')) {
+      container.classList.remove('invisible');
+      panel.classList.remove('translate-x-full');
+    } else {
+      panel.classList.add('translate-x-full');
+      setTimeout(() => {
+        container.classList.add('invisible');
+      }, 300); // Matches transition duration
     }
-    else{
-        rej("Promise rejected");
-    }
-});
-
-myPromise.then((result)=>{
-    console.log(result);
-})
-.catch((error)=>{
-    console.log(error);
-});
-
-
-// 
-class Person{
-    constructor(name,age){
-        this.name=name;
-        this.age=age;
-    }
-    getData(){
-        console.log(`Name: ${this.name}, Age: ${this.age}`);
-    }
 }
-const person1=new Person("asad",24);
-person1.getData();
-console.log(person1.getData(    ));
-
-//async function is a function that returns a promise and allows you to use the await keyword to wait for the promise to resolve before continuing with the execution of the code.
 
 
 
-async function getData(){
-       
-       try{
-        const res1=await fetch("api/data1.json");
-        const data=await res1.json();
-        console.log(data);
-        const res2=await fetch("api/data2.json");
-        const data2=await res2.json();
-        console.log(data2);
-       }
-       catch(error){
-        console.log("Error fetching data",error);
-       }
-}
-getData();
+  function setTripType(clickedBtn) {
+    // 1. Get all buttons in the section
+    const buttons = document.querySelectorAll('.trip-tab');
+
+    buttons.forEach(btn => {
+      const dot = btn.querySelector('.status-dot');
+
+      // 2. Set inactive style for everyone
+      btn.classList.remove('bg-blue-950', 'text-white');
+      btn.classList.add('bg-[#EDEEF1]', 'text-[#5B616E]');
+      
+      // Reset Dot to inactive (gray border)
+      dot.classList.remove('border-white', 'ring-2', 'ring-blue-950', 'bg-white');
+      dot.classList.add('border-[#5B616E]');
+    });
+
+    // 3. Set Active style for the clicked button
+    clickedBtn.classList.remove('bg-[#EDEEF1]', 'text-[#5B616E]');
+    clickedBtn.classList.add('bg-blue-950', 'text-white');
+    
+    // Set Dot to active (White center with blue ring)
+    const activeDot = clickedBtn.querySelector('.status-dot');
+    activeDot.classList.remove('border-[#5B616E]');
+    activeDot.classList.add('border-white', 'ring-2', 'ring-blue-950', 'bg-white');
+  }
