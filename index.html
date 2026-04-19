@@ -1,0 +1,866 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skyvela – Flights, Hotels & Activities</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#7C3AED',
+            'brand-light': '#EDE9FE',
+            accent: '#F59E0B',
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- ═══════════ NAVBAR ═══════════ -->
+<nav class="bg-white border-b border-violet-100 sticky top-0 z-40">
+  <div class="max-w-[1220px] mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-2 flex-shrink-0">
+      <img src="assets/logo.png" class="w-[112px] h-[37px]" alt="Skyvela">
+    </a>
+
+    <div class="hidden md:flex items-center md:basis-[30%] gap-6  text-sm font-medium">
+      <a href="#" class="text-[#1E2358]">Flights</a>
+      <a href="#" class="text-[#1E2358]">Hotels</a>
+      <a href="#" class="text-[#1E2358]">Packages</a>
+      <a href="#" class="text-[#1E2358]">Activities</a>
+      <a href="#" class="text-[#1E2358]">Transfers</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+
+        <div class="hidden md:flex items-center gap-1 cursor-pointer pr-2 border-r border-gray-100 mr-2">
+        <img src="https://flagcdn.com/w20/us.png" class="w-5 h-3.5 rounded-sm object-cover" alt="USA Flag">
+        <span class="text-xs font-bold text-[#1E2358]">ENG</span>
+        <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <button class="hidden sm:block text-sm font-semibold px-5 py-2 rounded-lg bg-[#1E2358] text-white">Sign in →</button>
+      
+      <button onclick="toggleMenu()" class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center active:scale-95 transition-all">
+        <svg width="20" height="20" viewBox="0 0 24 24" stroke="#1E2358" fill="none" stroke-width="2.5" stroke-linecap="round">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="side-menu-container" class="fixed inset-0 z-50 invisible transition-all duration-300">
+  <div onclick="toggleMenu()" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+  <div id="sidebar-panel" class="absolute right-0 top-0 h-full w-[280px] bg-white shadow-2xl translate-x-full transition-transform duration-300 overflow-y-auto">
+    
+    <div class="flex justify-end p-4">
+      <button onclick="toggleMenu()" class="text-[#1E2358]">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="px-6 pb-10 space-y-8">
+      
+      <div>
+        <h3 class="text-sm font-bold text-[#1E2358] mb-4">Account</h3>
+        <div class="space-y-4">
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium">
+            <img src="assets/booking-icon.png" class="w-5 h-5"> My Booking
+          </a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium">
+            <img src="assets/saved-icon.png" class="w-5 h-5"> Saved
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold text-[#1E2358] mb-4">Travel</h3>
+        <div class="space-y-4">
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/airplane.png" class=""> Flights</a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/5 Stars Hotel 1 (1).png" class=""> Hotels</a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/Component 13 (6).png" class=""> Packages</a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/Component 13 (4).png" class=""> Activities</a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/aeroplane 2.png" class=""> Transfers</a>
+        </div>
+      </div>
+
+      <hr class="border-gray-100">
+
+      <div>
+        <h3 class="text-sm font-bold text-[#1E2358] mb-4">Company</h3>
+        <div class="space-y-4">
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/about.png" class="w-5 h-5"> About Us</a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/blog.png" class="w-5 h-5"> Blog</a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/gallery.png" class="w-5 h-5"> Gallery</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-bold text-[#1E2358] mb-4">Support</h3>
+        <div class="space-y-4">
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/help.png" class="w-5 h-5"> Help Center</a>
+          <a href="#" class="flex items-center gap-3 text-sm text-gray-600 font-medium"><img src="assets/contact.png" class="w-5 h-5"> Contact Us</a>
+        </div>
+      </div>
+
+      <hr class="border-gray-100">
+
+      <div>
+        <h3 class="text-sm font-bold text-[#1E2358] mb-4">Region & Currency</h3>
+        <div class="flex items-center gap-3 text-sm text-gray-600 font-medium">
+          <img src="https://flagcdn.com/w20/us.png" class="w-5 h-3.5 object-cover rounded-sm">
+          English - USD
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="relative overflow-hidden bg-cover h-[120vh] md:h-[700px] bg-bottom bg-[url('assets/home.jpg')] flex items-start md:items-center justify-center pt-10 md:pt-0">
+
+  <div class="relative px-4 sm:px-6 md:px-8 lg:px-0 w-full z-10 max-w-[1200px] mx-auto">
+
+    <div class="relative w-full bg-white pt-5 mt-10 rounded-3xl shadow-xl overflow-visible">
+
+      <div class="flex items-center gap-0 md:gap-2 px-4 md:px-6 pt-4 border-b border-gray-100 overflow-x-auto no-scrollbar">
+        <button class="flex flex-wrap items-center gap-2 px-3 pb-3 text-sm font-semibold text-blue-900 border-b-2 border-blue-900 whitespace-nowrap">
+          <img src="assets/airplane.png" class="text-center "> Flights
+        </button>
+        <button class="flex items-center text-center  flex-wrap gap-2 px-3 pb-3 text-sm text-gray-400 border-b-2 border-transparent whitespace-nowrap hover:text-blue-900">
+          <img src="assets/hotel.png" class="text-center mx-auto"> 
+          
+          Hotels
+        </button>
+        <button class="flex items-center flex-wrap gap-2 px-3 pb-3 text-sm text-gray-400 border-b-2 border-transparent whitespace-nowrap hover:text-blue-900">
+          <img src="assets/Component 13 (1).png" class="mx-auto "> Packages
+        </button>
+        <button class="flex items-center flex-wrap gap-2 px-3 pb-3 text-sm text-gray-400 border-b-2 border-transparent whitespace-nowrap hover:text-blue-900">
+          <img src="assets/Component 13 (2).png" class="mx-auto"> Activities
+        </button>
+        <button class="flex items-center flex-wrap gap-2 px-3 pb-3 text-sm text-gray-400 border-b-2 border-transparent whitespace-nowrap hover:text-blue-900">
+   <img src="assets/Component 13 (5).png"> Transfers
+        </button>
+      </div>
+
+      <div class="px-6 py-5 sm:px-8 pb-12">
+
+        <div class="flex items-center gap-2 mb-5 flex-wrap">
+          <button class="flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-md bg-blue-950 text-white">
+            <span class="w-3 h-3 rounded-full border-2 border-white ring-2 ring-blue-950 bg-white inline-block"></span> One Way
+          </button>
+          <button class="flex items-center gap-2 text-[#5B616E] text-sm font-medium px-4 py-2 rounded-md bg-[#EDEEF1]">
+            <span class="w-3 h-3 rounded-full border-2 border-[#5B616E] inline-block"></span> Round Trip
+          </button>
+          <button class="flex items-center gap-2 text-sm text-[#5B616E] font-medium px-4 py-2 rounded-md bg-[#EDEEF1]">
+            <span class="w-3 h-3 rounded-full border-2 border-[#5B616E] inline-block"></span> Multi City
+          </button>
+        </div>
+
+        <div class="grid grid-cols-12 gap-3 items-stretch">
+
+          <div class="col-span-12 md:col-span-5 grid grid-cols-2 gap-2 relative">
+            
+            <div class="border border-blue-100 rounded-2xl px-4 py-3 cursor-pointer hover:border-blue-400 hover:shadow-sm">
+              <div class="flex items-center gap-2 mb-1">
+                <svg class="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                <p class="text-[10px] font-semibold uppercase tracking-widest text-blue-900">From</p>
+              </div>
+              <p class="text-lg font-extrabold text-blue-950 leading-tight">Dhaka</p>
+              <p class="text-[11px] text-gray-500 truncate">DAC, Hazrat Shahjalal Inter</p>
+            </div>
+
+            <div class="border border-blue-100 rounded-2xl px-4 py-3 cursor-pointer hover:border-blue-400 hover:shadow-sm">
+              <div class="flex items-center gap-2 mb-1">
+                <svg class="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/></svg>
+                <p class="text-[10px] font-semibold uppercase tracking-widest text-blue-900">To</p>
+              </div>
+              <p class="text-lg font-extrabold text-blue-950 leading-tight">Cox's Bazar</p>
+              <p class="text-[11px] text-gray-500 truncate">CXB, Cox's Bazar Airport</p>
+            </div>
+            
+            <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-1.5 border border-blue-100 shadow-md text-blue-900 active:scale-95 transition-all">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+            </button>
+          </div>
+
+          <div class="col-span-12 md:col-span-4 border border-blue-100 rounded-2xl flex cursor-pointer hover:border-blue-400 hover:shadow-sm overflow-hidden">
+            <div class="flex-1 px-4 py-3 min-w-0">
+              <div class="flex items-center gap-1.5 mb-1">
+                <svg class="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/></svg>
+                <p class="text-[10px] font-semibold uppercase tracking-widest text-blue-900">Departure Date</p>
+              </div>
+              <p class="text-lg font-extrabold text-blue-950 leading-tight">22 Mar'26</p>
+              <p class="text-[11px] text-gray-500 mt-0.5">Sunday</p>
+            </div>
+            <div class="w-px bg-blue-100 self-stretch my-3"></div>
+            <div class="flex-1 px-4 py-3 min-w-0">
+              <p class="text-[10px] font-semibold uppercase tracking-widest text-blue-900 mb-1">Return Date</p>
+              <p class="text-sm font-medium text-gray-400 leading-tight">Save more on</p>
+              <p class="text-[11px] text-gray-500">return flight</p>
+            </div>
+          </div>
+
+          <div class="col-span-12 md:col-span-3 border border-blue-100 rounded-2xl px-4 py-3 cursor-pointer hover:border-blue-400 hover:shadow-sm">
+            <div class="flex items-center gap-2 mb-1">
+                <svg class="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                <p class="text-[10px] font-semibold uppercase tracking-widest text-blue-900">Traveler, Class</p>
+            </div>
+            <p class="text-lg font-extrabold text-blue-950 leading-tight">1 Traveler</p>
+            <p class="text-[11px] text-gray-500 mt-0.5">Economy</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-amber-400 hover:bg-amber-500 active:scale-95 text-blue-950 font-extrabold text-sm px-10 py-3 rounded-md flex items-center gap-2 shadow-lg transition-all z-20 whitespace-nowrap">
+        Search
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+      </button>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FEATURED FLIGHTS ═══════════ -->
+<section class="bg-gray-100 py-12 px-4 md:px-10">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <p class="text-sm text-gray-400">Best Deals</p>
+        <h2 class="text-2xl md:text-3xl font-bold text-blue-900">
+          Featured Flights
+        </h2>
+      </div>
+      <a href="#" class="text-sm font-semibold text-blue-900 hover:underline">
+        View All
+      </a>
+    </div>
+
+    <!-- Cards -->
+    <div class="flex md:flex-row flex-col  gap-6">
+
+      <!-- Card 1 -->
+      <div class="bg-white rounded-2xl basis-1/3 shadow-md p-5">
+        
+        <!-- Top Row -->
+        <div class="flex justify-between items-center mb-4">
+          <div class="w-8 h-8 flex items-center justify-center bg-blue-900 rounded-full">
+            ✈️
+          </div>
+          <div class="flex gap-2 text-xs">
+            <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Best</span>
+            <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Cheapest</span>
+          </div>
+        </div>
+
+        <!-- Route -->
+        <div class="flex items-center justify-between text-blue-900 font-semibold">
+          <span>DAC</span>
+          <div class="flex flex-col items-center text-xs text-gray-400">
+        <img src="assets/Loading.png">
+        <div class="flex gap-32">
+         <span>Dhaka</span>
+          <span>Dubai</span>
+        </div>
+        </div>
+          <span>DXB</span>
+        </div>
+
+        <!-- Cities -->
+        <div class="flex justify-between text-xs text-gray-400 mt-1">
+         
+        </div>
+
+        <hr class="my-4">
+
+        <!-- Airline & Price -->
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2 text-sm text-gray-600">
+            <span>🛫</span>
+            <span>Qatar Airways</span>
+          </div>
+          <p class="text-sm font-semibold text-blue-900">
+            $345 <span class="text-gray-400 font-normal">/ person</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white basis-1/3 rounded-2xl pb-10 px-2 pt-4 shadow-md">
+        
+        <div class="flex justify-between items-center mb-4">
+          <div class="w-8 h-8 flex items-center justify-center bg-blue-900 rounded-full">
+            ✈️
+          </div>
+          <div class="flex gap-2 text-xs">
+            <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Bundle</span>
+            <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Save Deal</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-blue-900 font-semibold">
+          <span>DAC</span>
+          <div class="flex flex-col  text-xs text-gray-400">
+          <img src="assets/Loading.png ">
+        <div class="flex gap-32">   
+         <span>Dhaka</span>
+          <span>Dubai</span>
+        </div>
+          </div>
+          <span>DXB</span>
+        </div>
+
+        <div class="flex justify-between text-xs text-gray-400 mt-1">
+     
+        </div>
+
+        <hr class="my-4">
+
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2 text-sm text-gray-600">
+            <span>🛫</span>
+            <span>Emirates</span>
+          </div>
+          <p class="text-sm font-semibold text-blue-900">
+            $345 <span class="text-gray-400 font-normal">/ person</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-2xl basis-1/3 shadow-md p-5">
+        
+        <div class="flex justify-between items-center mb-4">
+          <div class="w-8 h-8 flex items-center justify-center bg-blue-900 rounded-full">
+            ✈️
+          </div>
+          <div class="flex gap-2 text-xs">
+            <span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Best</span>
+            <span class="bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">Cheapest</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-blue-900 font-semibold">
+          <span>DAC</span>
+          <div class="flex flex-col items-center text-xs text-gray-400">
+            ✈️
+            <span>1 Stop</span>
+          </div>
+          <span>DXB</span>
+        </div>
+
+        <div class="flex justify-between text-xs text-gray-400 mt-1">
+          <span>Dhaka</span>
+          <span>Dubai</span>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2 text-sm text-gray-600">
+            <span>🛫</span>
+            <span>Jazeera Airways</span>
+          </div>
+          <p class="text-sm font-semibold text-blue-900">
+            $345 <span class="text-gray-400 font-normal">/ person</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ POPULAR HOTELS ═══════════ -->
+<section class="py-10 px-4  bg-[#f5f5f5] md:px-8">
+    <div class="flex justify-between items-end max-w-7xl mx-auto mb-8">
+        <div>
+            <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Top Rated</p>
+            <h2 class="text-3xl font-bold text-[#1E2358] mt-1">Popular Hotels</h2>
+        </div>
+        <a href="#" class="text-[#1E2358] font-bold text-sm hover:underline transition-all">View All</a>
+    </div>
+
+    <div class="flex md:grid md:grid-cols-3 flex-nowrap overflow-x-auto gap-5 snap-x snap-mandatory no-scrollbar max-w-7xl mx-auto pb-4">
+        
+        <div class="flex-none w-[82%] md:w-full bg-white rounded-[2.5rem] p-3 snap-start border border-transparent hover:border-gray-200 transition-all">
+            <div class="relative overflow-hidden rounded-t-[1.4rem]">
+                <div class="absolute top-4 left-[0] z-1000  flex">
+                    <div class="bg-amber-400 text-[#1E2358] text-[10px] font-bold px-4 py-1.5 ribbon-tail">
+                        Lowest Price
+                    </div>
+                </div>
+                
+                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" 
+                     class="w-full h-52 md:h-64 object-cover" alt="Hotel Switzerland">
+                
+                <div class="absolute inset-0 flex items-center justify-between px-3 text-white/80 pointer-events-none">
+                    <i class="fas fa-chevron-left bg-black/10 p-2 rounded-full backdrop-blur-sm"></i>
+                    <i class="fas fa-chevron-right bg-black/10 p-2 rounded-full backdrop-blur-sm"></i>
+                </div>
+            </div>
+
+            <div class="mt-4 px-2 pb-2">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg text-[#1E2358] leading-tight">Grand Switzerland</h3>
+                    <div class="text-right">
+                        <div class="text-amber-400 text-[10px] tracking-tighter">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-[10px] text-gray-400 font-medium">4.8 (3.0K Reviews)</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-1.5 text-xs mt-1">
+                    <i class="fas fa-map-marker-alt text-[#1E2358]"></i>
+                    <span class="text-gray-500">Switzerland</span>
+                </div>
+
+                 <div class="">
+                    <div class="flex items-center justify-between pt-2  gap-2 text-[11px] text-gray-600 font-medium">
+                        <div class="flex-col items-center">
+                        <i class="fas fa-utensils text-amber-600/60"></i><span>Breakfast included</span>
+                 
+                    <div class="flex items-center flex-row gap-4 text-[11px] text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fas fa-wifi text-green-500/80"></i> Free Wifi</span>
+                        <span class="flex items-center gap-1.5"><i class="fas fa-snowflake text-blue-400"></i> Spa</span>
+                        </div>  
+                    </div>
+                       <div class="flex  flex-col items-end">
+                    <span class="text-xl font-extrabold text-[#1E2358]">$345</span>
+                    <p class="text-[10px] text-gray-400 font-medium">for 1 Night, per person</p>
+                </div>
+                    </div>
+                </div>
+
+            
+            </div>
+        </div>
+
+        <div class="flex-none w-[82%] md:w-full bg-white rounded-[1.2rem] p-3 snap-start border border-transparent hover:border-gray-200 transition-all">
+            <div class="relative overflow-hidden rounded-t-[1.4rem]">
+                <div class="absolute top-4 left-0 z-10 flex">
+                    <div class="bg-amber-400 text-[#1E2358] text-[10px] font-bold px-4 py-1.5 ribbon-tail">
+                        20% Offers
+                    </div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80" 
+                     class="w-full h-52 md:h-64 object-cover" alt="Tiny House Germany">
+            </div>
+            <div class="mt-4 px-2">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg text-[#1E2358] leading-tight truncate">Tiny House Dreic...</h3>
+                    <div class="text-right">
+                        <div class="text-amber-400 text-[10px]">★★★★★</div>
+                        <p class="text-[10px] text-gray-400 font-medium">4.8 (3.0K Reviews)</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1.5 text-xs mt-1">
+                    <i class="fas fa-map-marker-alt text-[#1E2358]"></i>
+                    <span class="text-gray-500">Germany, Trier</span>
+                </div>
+                <div class="">
+                    <div class="flex items-center justify-between pt-2  gap-2 text-[11px] text-gray-600 font-medium">
+                        <div class="flex-col items-center">
+                        <i class="fas fa-utensils text-amber-600/60"></i><span>Breakfast included</span>
+                 
+                    <div class="flex items-center flex-row gap-4 text-[11px] text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fas fa-wifi text-green-500/80"></i> Free Wifi</span>
+                        <span class="flex items-center gap-1.5"><i class="fas fa-snowflake text-blue-400"></i> Spa</span>
+                        </div>  
+                    </div>
+                       <div class="flex  flex-col items-end">
+                    <span class="text-xl font-extrabold text-[#1E2358]">$345</span>
+                    <p class="text-[10px] text-gray-400 font-medium">for 1 Night, per person</p>
+                </div>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+
+        <div class="flex-none w-[82%] md:w-full bg-white rounded-[1rem] p-3 snap-start border border-transparent hover:border-gray-200 transition-all">
+            <div class="relative overflow-hidden rounded-t-[1.4rem]">
+                <div class="absolute top-4 left-0 z-10 flex">
+                    <div class="bg-amber-400 text-[#1E2358] text-[10px] font-bold px-4 py-1.5 ribbon-tail">
+                        Best buy for
+                    </div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80" 
+                     class="w-full h-52 md:h-64 object-cover" alt="Grand Resort">
+            </div>
+            <div class="mt-4 px-2 pb-2">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-lg text-[#1E2358] leading-tight">Grand Switzerland</h3>
+                    <div class="text-right">
+                        <div class="text-amber-400 text-[10px]">★★★★★</div>
+                        <p class="text-[10px] text-gray-400 font-medium">4.8 (3.0K Reviews)</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1.5 text-xs mt-1">
+                    <i class="fas fa-map-marker-alt text-[#1E2358]"></i>
+                    <span class="text-gray-500">Switzerland</span>
+                </div>
+                    <div class="">
+                    <div class="flex items-center justify-between pt-2  gap-2 text-[11px] text-gray-600 font-medium">
+                        <div class="flex-col items-center">
+                        <i class="fas fa-utensils text-amber-600/60"></i><span>Breakfast included</span>
+                 
+                    <div class="flex items-center flex-row gap-4 text-[11px] text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fas fa-wifi text-green-500/80"></i> Free Wifi</span>
+                        <span class="flex items-center gap-1.5"><i class="fas fa-snowflake text-blue-400"></i> Spa</span>
+                        </div>  
+                    </div>
+                       <div class="flex  flex-col items-end">
+                    <span class="text-xl font-extrabold text-[#1E2358]">$345</span>
+                    <p class="text-[10px] text-gray-400 font-medium">for 1 Night, per person</p>
+                </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<!-- ═══════════ FEATURED ACTIVITIES ═══════════ -->
+ <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+ 
+
+        .activity-card {
+            transition: all 0.3s ease;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* Horizontal Scroll Snap for Mobile */
+        .scroll-container {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card-wrapper {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+    </style>
+<section class="py-12 px-4">
+    <div class="flex justify-between   max-w-7xl mx-auto mb-6">
+        <div class="flex-col">
+        <h5 class="text-[#5B616E]">Experiences </h5>
+
+
+        <h3 class="text-2xl font-bold text-[#1E2358] font-semibold">Featured Activities</h3>
+        </div>
+        <a href="#" class="text-[#1E2358] font-bold md:mr-5 text-sm">View All</a>
+    </div>
+
+    <div class="flex flex-nowrap overflow-x-auto gap-3 snap-x snap-mandatory scroll-smooth no-scrollbar max-w-7xl mx-auto pb-4">
+        
+        <div class="flex-none w-[90%] md:w-[calc(33.333%-1rem)] snap-start">
+            <div class="relative">
+            
+                <img src="assets/img.png" class="rounded-2xl w-full h-[200px] md:h-[280px] ">
+            </div>
+            
+            <div class="content mt-3">
+                <div class="flex items-center text-amber-400 text-sm">
+                    ★★★★☆ 
+                    <span class="text-gray-500 text-xs font-medium ml-2">4.8 (3.0K Reviews)</span>
+                </div>
+                <h3 class="font-bold text-lg text-[#1E2358] mt-1 leading-tight">
+                    Coral Reef Snorkeling Tour
+                </h3>
+                <div class="flex items-center gap-1 mt-1 text-gray-500">
+                    <i class="fas fa-map-marker-alt text-[#1E2358] text-xs"></i>
+                    <span class="text-xs">Switzerland</span>
+                </div>
+                <div class="mt-2 flex items-baseline">
+                    <span class="text-[10px] text-gray-500 font-bold">FROM</span>
+                    <span class="text-xl font-bold text-[#1E2358] ml-1">$99</span>
+                    <span class="text-gray-500 text-xs ml-1">/person</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-none w-[90%] md:w-[calc(33.333%-1rem)] snap-start">
+            <div class="relative">
+              
+                <img src="assets/img (1).png" class="rounded-2xl w-full h-[200px] md:h-[280px] object-cover">
+            </div>
+            <div class="content mt-3">
+                <div class="flex items-center text-amber-400 text-sm">
+                    ★★★★☆ <span class="text-gray-500 text-xs ml-2">4.8 (3.0K Reviews)</span>
+                </div>
+                <h3 class="font-bold text-lg text-[#1E2358] mt-1">Coral Reef Snorkeling Tour</h3>
+                <div class="flex items-center gap-1 mt-1 text-gray-500">
+                    <i class="fas fa-map-marker-alt text-[#1E2358] text-xs"></i>
+                    <span class="text-xs">Switzerland</span>
+                </div>
+                <div class="mt-2 flex items-baseline">
+                    <span class="text-[10px] text-gray-500 font-bold">FROM</span>
+                    <span class="text-xl font-bold text-[#1E2358] ml-1">$99</span>
+                    <span class="text-gray-500 text-xs ml-1">/person</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-none w-[90%] md:w-[calc(33.333%-1rem)] snap-start">
+            <div class="relative">
+        
+                <img src="assets/img (2).png" class="rounded-2xl w-full h-[200px] md:h-[280px] object-cover">
+            </div>
+            <div class="content mt-3">
+                <div class="flex items-center text-amber-400 text-sm">
+                    ★★★★☆ <span class="text-gray-500 text-xs ml-2">4.8 (3.0K Reviews)</span>
+                </div>
+                <h3 class="font-bold text-lg text-[#1E2358] mt-1">Coral Reef Snorkeling Tour</h3>
+                <div class="flex items-center gap-1 mt-1 text-gray-500">
+                    <i class="fas fa-map-marker-alt text-[#1E2358] text-xs"></i>
+                    <span class="text-xs">Switzerland</span>
+                </div>
+                <div class="mt-2 flex items-baseline">
+                    <span class="text-[10px] text-gray-500 font-bold">FROM</span>
+                    <span class="text-xl font-bold text-[#1E2358] ml-1">$99</span>
+                    <span class="text-gray-500 text-xs ml-1">/person</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════ PROMO BANNER ═══════════ -->
+<section class="py-10 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto mb-6">
+        <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider">Special Offers</p>
+        <h2 class="text-3xl font-bold text-[#1E2358] mt-1">Promotional Offers</h2>
+    </div>
+
+    <div class="flex md:grid md:grid-cols-3 flex-nowrap overflow-x-auto gap-4 snap-x snap-mandatory no-scrollbar max-w-7xl mx-auto">
+        
+        <div class="flex-none w-[82%] md:w-full relative snap-start group cursor-pointer">
+            <div class="overflow-hidden rounded-2xl shadow-sm">
+                <img src="assets/Promotional Offers.png" class="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105" alt="Adventure begins">
+            </div>
+          
+        </div>
+
+        <div class="flex-none w-[82%] md:w-full relative snap-start group cursor-pointer">
+            <div class="overflow-hidden rounded-2xl shadow-sm">
+                <img src="assets/Card 2.png" class="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105" alt="Flight Savings">
+            </div>
+          
+        </div>
+
+        <div class="flex-none w-[82%] md:w-full relative snap-start group cursor-pointer">
+            <div class="overflow-hidden rounded-2xl shadow-sm">
+                <img src="assets/Card 3.png" class="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105" alt="Next journey">
+            </div>
+          
+        </div>
+
+    </div>
+</section>
+
+<style>
+    /* Clean scroll look */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer-bg text-white py-12 px-6 bg-[#1E2358]">
+        <div class="md:max-w-7xl md:mx-auto">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+                
+                <!-- Left Column - Logo & Description -->
+                <div class="lg:col-span-5  space-y-6">
+                    <div class="flex items-center gap-3">
+                    <img src="assets/logo_footer.png" class="w-[150px] h-[60px]" >
+                    </div>
+                    
+                    <p class="text-gray-300 text-[15px] leading-relaxed max-w-md">
+                        Your smart travel companion for flights, hotels, activities and more — across the globe.
+                    </p>
+                    
+                    <!-- Language -->
+                    <div class="space-y-3">
+                        <p class="text-xs uppercase tracking-widest text-gray-400 font-medium">Language</p>
+                        <div class="flex  gap-2">
+                            <button onclick="selectLang(this)" 
+                                    class="lang-btn active bg-[#253183] hover:bg-blue-700 transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                English
+                            </button>
+                            <button onclick="selectLang(this)" 
+                                    class="lang-btn  bg-[#272D70] transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                हिन्दी
+                            </button>
+                            <button onclick="selectLang(this)" 
+                                    class="lang-btn bg-[#272D70] transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                Français
+                            </button>
+                            <button onclick="selectLang(this)" 
+                                    class="lang-btn bg-[#272D70] transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                عربي
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Currency -->
+                    <div class="space-y-3">
+                        <p class="text-xs uppercase tracking-widest text-gray-400 font-medium">Currency</p>
+                        <div class="flex  gap-2">
+                            <button onclick="selectCurrency(this)" 
+                                    class="currency-btn active bg-[#253183] hover:bg-blue-700 transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                USD
+                            </button>
+                            <button onclick="selectCurrency(this)" 
+                                    class="currency-btn bg-[#272D70]] transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                EUR
+                            </button>
+                            <button onclick="selectCurrency(this)" 
+                                    class="currency-btn bg-[#272D70] transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                GBP
+                            </button>
+                            <button onclick="selectCurrency(this)" 
+                                    class="currency-btn bg-bg-[#272D70] transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                BDT
+                            </button>
+                            <button onclick="selectCurrency(this)" 
+                                    class="currency-btn bg-[#272D70] transition-colors text-white text-sm px-5 py-2 rounded-xl font-medium">
+                                AED
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Columns -->
+                <div class="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10">
+                    
+                    <!-- EXPLORE -->
+                    <div class="md:ml-20 ml-0">
+                        <h3 class="text-sm font-semibold tracking-widest text-gray-400 mb-5">EXPLORE</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Flights</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Hotels</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Activities & Tours</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Flight + Hotel</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Airport Transfers</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- COMPANY -->
+                    <div class="">
+                        <h3 class="text-sm font-semibold tracking-widest text-gray-400 mb-5">COMPANY</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">About Us</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Blog</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Gallery</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Contact Us</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Help Center</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- LEGAL -->
+                    <div>
+                        <h3 class="text-sm font-semibold tracking-widest text-gray-400 mb-5">LEGAL</h3>
+                        <ul class="space-y-3 text-sm">
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Terms & Conditions</a></li>
+                            <li><a href="#" class="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+                <div class="text-gray-400 text-center md:text-left">
+                    Copyright © 2026 Skyvela. All Rights Reserved.
+                </div>
+                
+                <div class="flex gap-6 text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Facebook</a>
+                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+  function setTab(el) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.classList.remove('bg-brand-light', 'text-brand');
+      b.classList.add('text-gray-500');
+    });
+    el.classList.add('bg-brand-light', 'text-brand');
+    el.classList.remove('text-gray-500');
+  }
+  function setTrip(el) {
+    document.querySelectorAll('.trip-btn').forEach(b => {
+      b.classList.remove('bg-brand', 'text-white');
+      b.classList.add('bg-gray-100', 'text-gray-500');
+    });
+    el.classList.add('bg-brand', 'text-white');
+    el.classList.remove('bg-gray-100', 'text-gray-500');
+  }
+
+
+  function toggleMenu() {
+    const container = document.getElementById('side-menu-container');
+    const panel = document.getElementById('sidebar-panel');
+    
+    if (container.classList.contains('invisible')) {
+      container.classList.remove('invisible');
+      panel.classList.remove('translate-x-full');
+    } else {
+      panel.classList.add('translate-x-full');
+      setTimeout(() => {
+        container.classList.add('invisible');
+      }, 300); // Matches transition duration
+    }
+  }
+</script>
+
+
+</body>
+</html>
