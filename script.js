@@ -50,6 +50,33 @@
 
 
 
+  function toggleMenu() {
+    const container = document.getElementById('menu-container');
+    const panel = document.getElementById('menu-panel');
+    const isMobile = window.innerWidth < 768;
+
+    if (container.classList.contains('invisible')) {
+      container.classList.remove('invisible');
+      // Slide in from right on mobile, slide down from top on laptop
+      if (isMobile) {
+        panel.classList.remove('translate-x-full');
+      } else {
+        panel.classList.remove('md:-translate-y-full');
+        panel.classList.add('md:translate-y-0');
+      }
+    } else {
+      if (isMobile) {
+        panel.classList.add('translate-x-full');
+      } else {
+        panel.classList.add('md:-translate-y-full');
+        panel.classList.remove('md:translate-y-0');
+      }
+      setTimeout(() => {
+        container.classList.add('invisible');
+      }, 300);
+    }
+  }
+
   function setTripType(clickedBtn) {
     // 1. Get all buttons in the section
     const buttons = document.querySelectorAll('.trip-tab');

@@ -32,13 +32,13 @@
 <body>
 
 <!-- ═══════════ NAVBAR ═══════════ -->
-<nav class="bg-white border-b border-violet-100 sticky top-0 z-40">
+<nav class="bg-white border-b border-violet-100 sticky top-0 z-50">
   <div class="max-w-[1220px] mx-auto px-4 py-3 flex items-center justify-between gap-4">
     <a href="#" class="flex items-center gap-2 flex-shrink-0">
       <img src="assets/logo.png" class="w-[112px] h-[37px]" alt="Skyvela">
     </a>
 
-    <div class="hidden md:flex items-center md:basis-[40%] gap-6  text-sm font-medium">
+    <div class="hidden md:flex items-center md:basis-[40%] gap-6 text-sm font-medium">
       <a href="#" class="text-[#1E2358]">Flights</a>
       <a href="#" class="text-[#1E2358]">Hotels</a>
       <a href="#" class="text-[#1E2358]">Packages</a>
@@ -47,8 +47,7 @@
     </div>
 
     <div class="flex items-center gap-3">
-
-        <div class="hidden md:flex items-center gap-1 cursor-pointer pr-2 border-r border-gray-100 mr-2">
+      <div class="hidden md:flex items-center gap-1 cursor-pointer pr-2 border-r border-gray-100 mr-2">
         <img src="assets/Flag.png" alt="USA Flag">
         <span class="text-xs font-bold text-[#1E2358]">ENG</span>
         <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -65,6 +64,66 @@
     </div>
   </div>
 </nav>
+
+<div id="menu-container" class="fixed inset-0 z-[60] invisible transition-all duration-300">
+  <div onclick="toggleMenu()" class="absolute inset-0 bg-black/20 backdrop-blur-sm md:bg-white/90"></div>
+
+  <div id="menu-panel" class="absolute right-0 top-0 h-full w-[280px] bg-white shadow-2xl translate-x-full transition-transform duration-300 md:w-full md:h-auto md:translate-x-0 md:-translate-y-full md:border-b md:border-gray-100">
+    
+    <div class="max-w-[1220px] mx-auto px-6 py-8">
+      <div class="flex items-center justify-between mb-8">
+        <img src="assets/logo.png" class="w-[112px] h-[37px]" alt="Skyvela">
+        <button onclick="toggleMenu()" class="text-gray-400 hover:text-red-500 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        
+        <div>
+          <h3 class="text-sm font-bold text-[#1E2358] mb-4 uppercase tracking-wider">Travel</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/airplane.png"> Flights</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/5 Stars Hotel 1 (1).png"> Hotels</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (6).png"> Packages</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (7).png"> Activities</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/aeroplane 2.png"> Transfers</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold text-[#1E2358] mb-4 uppercase tracking-wider">Company</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (8).png"> About Us</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (10).png"> Blog</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (11).png"> Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold text-[#1E2358] mb-4 uppercase tracking-wider">Support</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (9).png"> Help Center</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/contact-us 1.png"> Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold text-[#1E2358] mb-4 uppercase tracking-wider">Account</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (12).png" class="w-5 h-5"> My Booking</a></li>
+            <li><a href="#" class="flex items-center gap-3 text-sm text-gray-600 hover:text-blue-600"><img src="assets/Component 13 (13).png" class="w-5 h-5"> Saved</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <div id="side-menu-container" class="fixed inset-0 z-50 invisible transition-all duration-300">
   <div onclick="toggleMenu()" class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
