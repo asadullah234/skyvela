@@ -43,3 +43,11 @@
     /* Clean scroll look */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .bi-arrow-right {
+
+ font-weight: bolder;
+ stroke-width: 0.3px;
+ stroke: white;
+ /* Adjust size for "boldness" */
+}
